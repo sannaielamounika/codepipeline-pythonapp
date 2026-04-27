@@ -3,8 +3,8 @@ set -ex
 
 APP_DIR=/home/ec2-user/app
 
-echo "Checking if files exist:"
-ls -la $APP_DIR
+echo "Creating app directory if missing..."
+mkdir -p $APP_DIR
 
 cd $APP_DIR
 
