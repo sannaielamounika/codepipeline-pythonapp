@@ -5,16 +5,22 @@ APP_DIR=/home/ec2-user/app
 
 cd $APP_DIR
 
-# Install python3
+echo "Current directory:"
+pwd
+ls -l   # 👈 DEBUG
+
 sudo yum update -y
-sudo yum install python3 -y
+sudo yum install python3 python3-venv -y
 
-# Create virtual environment
 python3 -m venv venv
-
-# Activate it
 source venv/bin/activate
 
-# Install dependencies
-pip install --upgrade pip
-pip install -r requirements.txt
+python3 -m pip install --upgrade pip
+
+# safer install
+if [ -f requirements.txt ]; then
+    pip install -r requirements.txt
+else
+    echo "requirements.txt not found!"
+    exit 1
+fi
