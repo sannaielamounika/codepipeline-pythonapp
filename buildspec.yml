@@ -2,15 +2,16 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-      python: 3.9
     commands:
-      - pip install -r requirements.txt
+      - echo "Installing dependencies (if any)"
 
   build:
     commands:
-      - echo "Build completed"
+      - echo "Build started"
+      - pwd
+      - ls -al   # 👈 DEBUG (important)
 
 artifacts:
   files:
     - '**/*'
+  discard-paths: no
