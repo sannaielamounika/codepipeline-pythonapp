@@ -1,20 +1,13 @@
 #!/bin/bash
-set -e
+set -ex
 
 APP_DIR=/home/ec2-user/app
-
 cd $APP_DIR
 
-# Install python3 if not installed
-sudo yum update -y
-sudo yum install python3 -y
+echo "Starting Flask app..."
 
-# Create virtual environment
-python3 -m venv venv
-
-# Activate it
 source venv/bin/activate
 
-# Install dependencies
-pip install --upgrade pip
-pip install -r requirements.txt
+pkill -f app.py || true
+
+nohup python app.py > output.log 2>&1 &
